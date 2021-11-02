@@ -1,0 +1,1 @@
+A very simple counter bot made for Czar void from discord, may or may not improve this depending on how free i am
