@@ -8,6 +8,7 @@ const intents = [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLA
 const bot = new Client({ disableMentions: 'everyone', intents: intents });
 
 const cache = {
+    run: true,
     last_number: 0,
     last_user: null
 }
@@ -15,18 +16,22 @@ const cache = {
 bot.on('ready', () => console.log(`Logged in as ${bot.user.tag}`));
 
 bot.on('messageCreate', message => {
-    if (['429493473259814923'].includes(message.author.id) && message.content.startsWith(config['prefix'])) {
+    if (['429493473259814923', '509129402668285956'].includes(message.author.id) && message.content.startsWith(config['prefix'])) {
         const cmdArr = message.content.split(' ');
         const command = cmdArr.shift().substr(config['prefix'].length);
-        switch(command) {
+        switch(command.toLowerCase()) {
             case 'set': {
                 cache.last_number = cmdArr[0];
                 console.log(cache.last_number);
                 break;
+            } case 'off': {
+                cache.run = false;
+            } case 'on': {
+                cache.run = true;
             }
         }
     } else {
-        if (message.channel.id == config['counter-channel']) {
+        if (message.channel.id == config['counter-channel'] && cache.run) {
             if (isNaN(Number(message.content))) {
                 message.delete();
                 console.log('1');
