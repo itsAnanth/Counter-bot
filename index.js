@@ -1,8 +1,7 @@
-import { config as initEnv } from 'dotenv';
-import { Client, Intents } from 'discord.js';
-import config from './config.json';
+const config = require('./config.json');
+const { Client, Intents } = require('discord.js');
+require('dotenv').config();
 
-initEnv();
 
 const intents = [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS];
 const bot = new Client({ disableMentions: 'everyone', intents: intents });
