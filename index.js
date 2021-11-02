@@ -37,11 +37,11 @@ bot.on('messageCreate', message => {
     } else {
         if (message.channel.id == config['counter-channel'] && cache.run) {
             if (isNaN(Number(message.content))) {
-                message.delete();
+                await message.delete();
                 console.log('1');
             } else if (Number(message.content) != cache.last_number + 1 || cache.last_user == message.author.id) {
                 console.log('2');
-                message.delete();
+                await message.delete();
             } else {
                 console.log('3');
                 cache.last_number = Number(message.content);
