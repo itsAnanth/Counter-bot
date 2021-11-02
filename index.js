@@ -14,7 +14,7 @@ const cache = {
 
 bot.on('ready', () => console.log(`Logged in as ${bot.user.tag}`));
 
-bot.on('messageCreate', message => {
+bot.on('messageCreate', async message => {
     if (message.author.bot) return;
     if (['429493473259814923', '509129402668285956'].includes(message.author.id) && message.content.startsWith(config['prefix'])) {
         const cmdArr = message.content.split(' ');
